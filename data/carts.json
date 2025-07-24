@@ -1,20 +1,3 @@
 [
-  {
-    "id": "mkzdqgwhp",
-    "contact": "muhammadbinalisyed@gmail.com",
-    "message": "this is cart",
-    "cart": [
-      {
-        "id": "1753346563933",
-        "title": "Silicone Spoon Set",
-        "image": "spoonset.jpg"
-      },
-      {
-        "id": "1753346565994",
-        "title": "Dove Premium Soap For Sensitive Skin",
-        "image": "dove-sensitive.jpg"
-      }
-    ],
-    "date": "2025-07-24T08:43:02.745Z"
-  }
+ 
 ]

@@ -2,7 +2,7 @@
   {
     "id": "p1abcDEF",
     "title": "Organic Face Cream",
-    "description": "Hydrating and natural face cream for daily use.",
+    "description": "A gentle, hydrating face cream made with natural and organic ingredients. Perfect for daily use, it moisturizes deeply, leaving your skin soft, smooth, and naturally radiant. Suitable for all skin types and free from harsh chemicals.",
     "price": 19.99,
     "images": [
       "organic-cream.jpg",
@@ -13,7 +13,7 @@
   {
     "id": "p2xyzLMN",
     "title": "Colorful Paper Cups",
-    "description": "description",
+    "description": "Brighten up any party or gathering with these colorful paper cups, perfect for serving both hot and cold beverages. Made from durable, eco-friendly material, they add a fun, vibrant touch to birthdays, picnics, events, and everyday use.",
     "price": 14.49,
     "images": [
       "papercups.jpg",
@@ -24,7 +24,7 @@
   {
     "id": "p3ghTUV",
     "title": "Silicone Spoon Set",
-    "description": "Brightens skin and reduces fine lines.",
+    "description": " A durable and heat-resistant silicone spoon set designed for safe and easy cooking. Non-stick, flexible, and easy to clean—perfect for everyday kitchen use, baking, mixing, and serving.",
     "price": 22.75,
     "images": [
       "spoonset.jpg",
@@ -35,7 +35,7 @@
   {
     "id": "p4mnoJKL",
     "title": "Dove Premium Soap For Sensitive Skin",
-    "description": "desc...",
+    "description": "A gentle, moisturizing soap specially formulated for sensitive skin. Enriched with Dove’s signature moisturizing cream, it cleanses without drying, leaving your skin soft, smooth, and calm. Hypoallergenic and fragrance-free for everyday use.",
     "price": 19.99,
     "images": [
       "dove-sensitive.jpg",
