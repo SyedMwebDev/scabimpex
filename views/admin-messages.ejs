@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Messages – Admin – Scab Impex</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .delete-btn {
+      background-color: #e53935;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+    .delete-btn:hover {
+      background-color: #c62828;
+    }
+
+    .reply-btn {
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .reply-btn:hover {
+      background-color: #1b5e20;
+    }
+
+    .action-buttons {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="admin-nav">
+    <h2>Admin Panel</h2>
+    <div class="admin-tabs">
+      <a href="/admin">Dashboard</a>
+      <a href="/admin/products">Products</a>
+      <a href="/admin/add-product">Add Product</a>
+      <a href="/admin/messages">Messages</a>
+      <a href="/admin/logout">Logout</a>
+    </div>
+  </nav>
+
+  <main class="admin-section">
+    <h1>Customer Messages</h1>
+    <% if (messages.length) { %>
+      <div class="message-list">
+        <% messages.forEach(msg => { %>
+          <div class="message-card">
+            <h4><%= msg.name %> <small>(<%= msg.email %>)</small></h4>
+            <p><%= msg.message %></p>
+            <small><%= new Date(msg.date).toLocaleString() %></small>
+            <div class="action-buttons">
+              <form action="/admin/delete-message/<%= msg.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this message?');">
+                <button class="delete-btn" type="submit">Delete</button>
+              </form>
+              <a href="mailto:<%= msg.email %>?subject=Reply from Scab Impex" class="reply-btn">Reply</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p>No messages yet.</p>
+    <% } %>
+  </main>
+</body>
+</html>

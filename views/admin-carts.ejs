@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin | Carts - Scab Impex</title>
+  <link rel="stylesheet" href="/admin.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+    }
+
+    .admin-header {
+      background: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .cart-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.07);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .contact-info {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .message {
+      font-style: italic;
+      margin-top: 8px;
+      color: #444;
+    }
+
+    .cart-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .item {
+      width: 200px;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .item-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .timestamp {
+      font-size: 13px;
+      color: #777;
+      margin-top: 15px;
+    }
+
+    a.logout-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: white;
+      color: #007bff;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.logout-btn:hover {
+      background: #efefef;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-header">
+    <h1>🛒 Admin Panel - Cart Submissions</h1>
+    <a href="/admin/logout" class="logout-btn">Logout</a>
+  </div>
+
+  <div class="container">
+    <% if (carts.length === 0) { %>
+      <p>No carts received yet.</p>
+    <% } else { %>
+      <% carts.forEach(cart => { %>
+        <div class="cart-box">
+          <div class="cart-header">
+            <h3>Cart ID: <%= cart.id %></h3>
+            <div class="contact-info">
+              <strong>Contact:</strong> <%= cart.contact %>
+              <% if (cart.message) { %>
+                <div class="message">📝 <%= cart.message %></div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="cart-items">
+            <% cart.cart.forEach(item => { %>
+              <div class="item">
+                <img src="<%= item.image %>" alt="<%= item.title %>">
+                <div class="item-title"><%= item.title %></div>
+              </div>
+            <% }) %>
+          </div>
+
+          <div class="timestamp">📅 Submitted on: <%= new Date(cart.date).toLocaleString() %></div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+</body>
+</html>

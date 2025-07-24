@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products | Scab Impex</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://kit.fontawesome.com/a2e0e9c1b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="/logo.png" style="height: 50px;" alt="Scab Impex" />
+  </div>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <a href="/products">Products</a>
+    <a href="/cart">Cart</a>
+  </div>
+</nav>
+
+<!-- ✅ All Products Section -->
+<section class="all-products-page">
+  <h1 class="all-products-title">All Products</h1>
+
+  <div class="all-products-grid">
+    <% products.forEach(product => { %>
+      <div class="product-box">
+        <div class="product-carousel">
+          <% product.images.forEach((img, index) => { %>
+            <img src="<%= img %>" alt="<%= product.title %>" class="<%= index === 0 ? 'active' : '' %>">
+          <% }) %>
+        </div>
+
+        <div class="product-info">
+          <h3><%= product.title %></h3>
+          <div class="product-actions">
+  <a href="/buy-now?id=<%= product.id %>" class="btn-buy">Buy Now</a>
+
+  <button class="btn-cart">Add to Cart</button>
+</div>
+
+          <a href="/product-detail/<%= product.id %>" class="view-link">View Product</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- ✅ Toast -->
+<div class="toast" id="toast">Item added to cart</div>
+
+<!-- ✅ Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div class="footer-bottom">
+      <p>&copy; 2025 Scab Impex. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(btn) {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+    btn.classList.toggle('active');
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn-cart');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const box = button.closest('.product-box');
+        const title = box.querySelector('h3')?.innerText || 'Product';
+        const image = box.querySelector('img')?.getAttribute('src') || '';
+
+        const item = {
+          id: Date.now().toString(),
+          title,
+          image
+        };
+
+        const cart = JSON.parse(localStorage.getItem('scabCart') || '[]');
+        cart.push(item);
+        localStorage.setItem('scabCart', JSON.stringify(cart));
+
+        showToast(`✅ "${title}" added to cart`);
+      });
+    });
+  });
+</script>
+
+<style>
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #333;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+</style>
+
+</body>
+</html>

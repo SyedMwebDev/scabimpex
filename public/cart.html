@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart | Scab Impex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .cart-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      align-items: center;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .cart-item-title {
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .remove-btn {
+      margin-left: auto;
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .cart-submit-section {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 16px;
+      margin-top: 12px;
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .btn-send-admin {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn-email {
+      background-color: #f57c00;
+      color: white;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+
+    <div class="cart-submit-section">
+      <input type="text" id="contact" placeholder="Enter your Email or Phone (required)" required />
+      <textarea id="cartMessage" rows="4" placeholder="Leave a message (optional)"></textarea>
+      <button class="btn-send-admin" id="sendToAdminBtn">Send to Admin</button>
+      <button class="btn-email" id="sendViaEmailBtn">Send via Email</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">✅ Item added to cart</div>
+
+  <script>
+    const cartItemsEl = document.getElementById('cartItems');
+    const cart = JSON.parse(localStorage.getItem('scabCart') || '[]');
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    function renderCart() {
+      cartItemsEl.innerHTML = '';
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+      }
+
+      cart.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="cart-item-title">${item.title}</div>
+          <div class="remove-btn" onclick="removeItem(${i})">❌ Remove</div>
+        `;
+        cartItemsEl.appendChild(div);
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('scabCart', JSON.stringify(cart));
+      renderCart();
+      showToast("🗑️ Item removed.");
+    }
+
+    document.getElementById('sendToAdminBtn').addEventListener('click', () => {
+      const contact = document.getElementById('contact').value.trim();
+      const message = document.getElementById('cartMessage').value.trim();
+
+      if (!contact) return alert("📧 Please enter your email or phone number.");
+      if (cart.length === 0) return alert("🛒 Your cart is empty.");
+
+      fetch('/api/send-cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cart, contact, message })
+      }).then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            showToast("✅ Sent to admin successfully.");
+            localStorage.removeItem('scabCart');
+            setTimeout(() => window.location.reload(), 1000);
+          } else {
+            alert("❌ Failed to send cart.");
+          }
+        });
+    });
+
+    document.getElementById('sendViaEmailBtn').addEventListener('click', () => {
+      const contact = document.getElementById('contact').value.trim();
+      const message = document.getElementById('cartMessage').value.trim();
+      if (!contact) return alert("📧 Please enter your email or phone number.");
+      if (cart.length === 0) return alert("🛒 Your cart is empty.");
+
+      const items = cart.map(p => `- ${p.title}`).join('%0A');
+      const mailtoLink = `mailto:scabimpex@outlook.com?subject=Cart%20Order&body=Items:%0A${items}%0A%0AMessage:%0A${encodeURIComponent(message)}%0AContact:%0A${encodeURIComponent(contact)}`;
+      window.location.href = mailtoLink;
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

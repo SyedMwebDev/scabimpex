@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terms & Conditions - Scab Impex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    .page-section {
+      max-width: 850px;
+      margin: 80px auto;
+      padding: 0 20px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .page-section h1 {
+      font-size: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #222;
+    }
+
+    .page-section h2 {
+      font-size: 20px;
+      margin-top: 25px;
+      color: #333;
+    }
+
+    .page-section p,
+    .page-section li {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      border-top: 1px solid #eee;
+      margin-top: 80px;
+    }
+
+    .footer-wrapper {
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-email a {
+      color: #ff6600;
+      font-weight: 500;
+      font-size: 16px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-note {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><img src="/logo.png" style="height: 50px;" alt="Scab Impex" /></div>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+      <a href="/faq">FAQ</a>
+    </div>
+  </div>
+
+  <!-- Terms Content -->
+  <section class="page-section">
+    <h1>Terms & Conditions</h1>
+
+    <p>Welcome to <strong>Scab Impex</strong>. By accessing or purchasing from our website, you agree to comply with the following Terms & Conditions. Please read them carefully.</p>
+
+    <h2>1. Use of Our Website</h2>
+    <p>Use our website only for lawful purposes. Do not engage in activities that disrupt or damage the content or services.</p>
+
+    <h2>2. Product Accuracy</h2>
+    <p>We aim to display all product info accurately. However, prices, availability, and details may change without notice.</p>
+
+    <h2>3. Orders & Payments</h2>
+    <ul>
+      <li>All transactions are processed securely.</li>
+      <li>We reserve the right to cancel any suspicious or fraudulent order.</li>
+    </ul>
+
+    <h2>4. Shipping & Delivery</h2>
+    <p>We provide estimated shipping timelines at checkout. Delays can occur due to customs, weather, or third-party carriers.</p>
+
+    <h2>5. Returns</h2>
+    <p>Returns are accepted under specific conditions. The item must be in original packaging and unused.</p>
+
+    <h2>6. Intellectual Property</h2>
+    <p>All content is the property of Scab Impex and may not be copied or reused without written permission.</p>
+
+    <h2>7. External Sales</h2>
+    <p>We also sell on third-party platforms like <strong>Walmart Marketplace</strong>. Purchases through them are subject to their policies.</p>
+
+    <h2>8. Modifications</h2>
+    <p>These terms may be updated at any time. Continued use of the website confirms acceptance.</p>
+
+    <h2>9. Contact</h2>
+    <p>Email: <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-wrapper">
+      <p class="footer-email">
+        📧 <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a>
+      </p>
+      <p class="footer-note">© 2025 Scab Impex. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(btn) {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('active');
+      btn.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

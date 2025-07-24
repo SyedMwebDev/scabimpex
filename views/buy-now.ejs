@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buy Now - <%= product.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .buy-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    .buy-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004aad;
+    }
+
+    .product-preview {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .product-preview img {
+      width: 100px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .product-preview .info {
+      flex: 1;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    form button {
+      padding: 12px;
+      width: 100%;
+      background-color: #0074D9;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="buy-container">
+    <h2>Buy Now</h2>
+
+    <div class="product-preview">
+      <img src="/<%= product.images[0] %>" alt="<%= product.title %>">
+      <div class="info">
+        <h3><%= product.title %></h3>
+        <p><%= product.description %></p>
+      </div>
+    </div>
+
+    <form id="buyForm">
+      <input type="text" name="name" placeholder="Your Full Name" required />
+      <input type="text" name="contact" placeholder="Email or Phone Number" required />
+      <textarea name="message" placeholder="Message" rows="4"></textarea>
+      <input type="hidden" name="productId" value="<%= product.id %>" />
+      <button type="submit">Submit Request</button>
+    </form>
+     <a class="whatsapp" href="https://wa.me/19293956896?text=Hello%2C%20I%20am%20interested%20in%20your%20product
+">
+  <i class="fa fa-phone"         aria-hidden="true"></i>
+  Contact us on WhatsApp
+</a>
+  </div>
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/faq">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Bottom Note -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Scab Impex. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+  <script>
+    const form = document.getElementById('buyForm');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/buy-now', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert("✅ Your request has been submitted. We'll contact you shortly.");
+        form.reset();
+      } else {
+        alert("❌ Failed to send request. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

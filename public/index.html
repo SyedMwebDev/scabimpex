@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scab Impex</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="/logo.png" style="height: 50px;" alt="Scab Impex" />
+    </div>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- ✅ Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Premium Products, Delivered with Care</h1>
+      <p>Explore a curated range of everyday essentials — from face creams to kitchen tools.</p>
+      <a href="/products" class="cta-btn">Browse Products</a>
+    </div>
+  </section>
+
+  <!-- ✅ About Section -->
+  <section id="about" class="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Trusted Quality, Delivered to Your Doorstep</h2>
+
+        <!-- Desktop Full Version -->
+        <p class="desktop-text">
+          <strong>Scab Impex</strong> brings you premium lifestyle products — from skincare and kitchen essentials to wellness and grooming items. We specialize in trusted sourcing and smooth delivery, giving every customer the confidence they deserve.
+        </p>
+        <p class="desktop-text">
+          We proudly connect with global markets including Walmart and others, committed to trust, value, and high-quality service for your everyday needs.
+        </p>
+
+        <!-- Mobile Short Version -->
+        <p class="mobile-text">
+          Scab Impex delivers trusted products in skincare, supplements, home, and lifestyle — with fast, secure delivery.  
+          We proudly work with major platforms including Walmart, ensuring quality and global standards in every order.
+        </p>
+
+        <a href="#contact" class="about-cta">Talk to Our Team</a>
+      </div>
+
+      <div class="about-image">
+        <img src="parcel-give.jpg" alt="Scab Impex Products" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="all-products-page">
+    <h2 class="all-products-title">Featured Products</h2>
+    <div class="all-products-grid" id="featured-products"></div>
+  
+  </section>
+
+  <div class="toast" id="toast">Item added to cart</div>
+
+  <section class="contact-section" id="contact">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <!-- Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <p>Your message has been sent successfully ✅</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast">Item added to cart</div>
+
+
+ <!-- ✅ Clean, Modern Footer -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/faq">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Bottom Note -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Scab Impex. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ✅ Toggle Navbar for Mobile
+  function toggleMenu(btn) {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+    btn.classList.toggle('active');
+  }
+
+  // ✅ Carousel Controls
+  function nextSlide(index) {
+    const container = document.getElementById(`carousel-${index}`);
+    const slides = container.querySelectorAll('img');
+    let current = Array.from(slides).findIndex(img => img.classList.contains('active'));
+    slides[current].classList.remove('active');
+    const next = (current + 1) % slides.length;
+    slides[next].classList.add('active');
+  }
+
+  function prevSlide(index) {
+    const container = document.getElementById(`carousel-${index}`);
+    const slides = container.querySelectorAll('img');
+    let current = Array.from(slides).findIndex(img => img.classList.contains('active'));
+    slides[current].classList.remove('active');
+    const prev = (current - 1 + slides.length) % slides.length;
+    slides[prev].classList.add('active');
+  }
+
+  // ✅ Toast Notification
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // ✅ Fetch & Render Featured Products
+  fetch('/api/products')
+    .then(res => res.json())
+    .then(products => {
+      const container = document.getElementById('featured-products');
+
+      const html = products.slice(0, 3).map((product, index) => `
+        <div class="product-box">
+          <div class="product-carousel" id="carousel-${index}">
+            ${product.images.map((img, i) => `
+              <img src="${img}" alt="${product.title}" class="${i === 0 ? 'active' : ''}">
+            `).join('')}
+            ${product.images.length > 1 ? `
+              <button class="carousel-btn prev" onclick="prevSlide(${index})">&#10094;</button>
+              <button class="carousel-btn next" onclick="nextSlide(${index})">&#10095;</button>
+            ` : ''}
+          </div>
+          <div class="product-info">
+            <h3>${product.title}</h3>
+            <div class="product-actions">
+              <a href="/product-detail/${product.id}" class="btn-buy">Buy Now</a>
+              <button class="btn-cart" data-id="${product.id}" data-title="${product.title}" data-img="${product.images[0]}">Add to Cart</button>
+            </div>
+            <a href="/product-detail/${product.id}" class="view-link">View More</a>
+          </div>
+        </div>
+      `).join('');
+
+      container.innerHTML = html;
+
+      // ✅ Setup Add to Cart button listeners after rendering
+      document.querySelectorAll('.btn-cart').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = {
+            id: button.dataset.id,
+            title: button.dataset.title,
+            image: button.dataset.img
+          };
+
+          const cart = JSON.parse(localStorage.getItem('scabCart') || '[]');
+          cart.push(item);
+          localStorage.setItem('scabCart', JSON.stringify(cart));
+          showToast(`✅ "${item.title}" added to cart`);
+        });
+      });
+    });
+</script>
+
+<!-- ✅ Contact Form Submission Script -->
+<script>
+  const form = document.getElementById('contactForm');
+  const modal = document.getElementById('successModal');
+
+  form?.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim()
+    };
+
+    const res = await fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    if (res.ok) {
+      modal.style.display = 'flex';
+      form.reset();
+    } else {
+      alert("❌ Failed to send. Please try again.");
+    }
+  });
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+</script>
+
+
+</body>
+</html>

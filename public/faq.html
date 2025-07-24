@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FAQs - Scab Impex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* FAQ section styles */
+    .faq-section {
+      max-width: 850px;
+      margin: 80px auto 60px;
+      padding: 0 20px;
+    }
+
+    .faq-section h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+      transition: 0.3s ease;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .faq-question i {
+      font-size: 16px;
+      color: #ff6600;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      display: none;
+      padding-top: 10px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer a {
+      color: #ff6600;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .faq-question {
+        font-size: 16px;
+      }
+      .faq-answer {
+        font-size: 14px;
+      }
+    }
+
+    /* Footer styles */
+    .footer {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      border-top: 1px solid #eee;
+      margin-top: 80px;
+    }
+
+    .footer-wrapper {
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-email a {
+      color: #ff6600;
+      font-weight: 500;
+      font-size: 16px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-email a:hover {
+      color: #e65c00;
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <div class="navbar">
+    <div class="logo"><img src="/logo.png" style="height: 50px;" alt="Scab Impex" /></div>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+      <a href="/faq">FAQ</a>
+    </div>
+  </div>
+
+  <!-- ✅ FAQ Section -->
+  <section class="faq-section">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How do I place an order?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        You can visit our <a href="/products">Products</a> page, choose your item, and proceed to checkout. You will receive a confirmation via email once your order is placed.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What payment methods are accepted?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        We accept debit/credit cards, digital wallet payments, and other secure payment methods depending on your location.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Do you ship internationally?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Yes. We ship globally where supported. International shipping charges may apply depending on destination.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How long does delivery take?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Orders are typically processed within 1–3 business days. Shipping times vary between 3–10 days depending on your location.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Can I buy your products from Walmart?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        Yes. We proudly sell select products through <strong>Walmart Marketplace</strong>. Look for Scab Impex on Walmart for verified listings.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is your return/refund policy?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        We accept returns within 7 days for unused items in original condition. Refunds are processed once the product is received and verified.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How can I contact Scab Impex support?</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="faq-answer">
+        You can email us anytime at <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a>. We aim to respond within 24 hours.
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Footer -->
+  <footer class="footer">
+    <div class="footer-wrapper">
+      <p class="footer-email">
+        📧 <a href="mailto:scabimpex@outlook.com">scabimpex@outlook.com</a>
+      </p>
+      <p class="footer-note">© 2025 Scab Impex. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ✅ JS -->
+  <script>
+    // Toggle menu
+    function toggleMenu(btn) {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('active');
+      btn.classList.toggle('active');
+    }
+
+    // Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

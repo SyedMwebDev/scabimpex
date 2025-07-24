@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buy Requests | Admin</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td {
+      color: #444;
+      font-size: 15px;
+    }
+
+    .btn-delete{
+      width: 70px;
+       height: 40px;
+        color: #f1f1f1;
+         background: #db3434;
+         border: none;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+    }
+    .btn-delete:hover{
+       background-color: #c21616;
+       cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Buy Requests</h1>
+
+  <table>
+    <tr>
+      <th>Buyer Name</th>
+      <th>Contact</th>
+      <th>Product</th>
+      <th>Message</th>
+      <th>Date</th>
+    </tr>
+    <% requests.forEach(r => { %>
+      <tr>
+        <td><%= r.name %></td>
+       <a href="<%= r.contact %>"> <td><%= r.contact %></td></a>
+        <td><%= r.product.title %></td>
+        <td><%= r.message || 'N/A' %></td>
+        <td><%= new Date(r.date).toLocaleString() %></td>
+     <form  method="POST" action="/admin/delete-buy-request/<%= r.id %>" onsubmit="return confirm('Are you sure to delete this request?');">
+  <button class="btn-delete" type="submit">🗑️ Delete</button>
+</form>
+
+
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

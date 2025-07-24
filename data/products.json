@@ -1,0 +1,47 @@
+[
+  {
+    "id": "p1abcDEF",
+    "title": "Organic Face Cream",
+    "description": "Hydrating and natural face cream for daily use.",
+    "price": 19.99,
+    "images": [
+      "organic-cream.jpg",
+      "organic-cream2.jpg",
+      "organic-cream3.jpg"
+    ]
+  },
+  {
+    "id": "p2xyzLMN",
+    "title": "Colorful Paper Cups",
+    "description": "description",
+    "price": 14.49,
+    "images": [
+      "papercups.jpg",
+      "papercups2.jpg",
+      "papercups3.jpg"
+    ]
+  },
+  {
+    "id": "p3ghTUV",
+    "title": "Silicone Spoon Set",
+    "description": "Brightens skin and reduces fine lines.",
+    "price": 22.75,
+    "images": [
+      "spoonset.jpg",
+      "spoonset2.jpg",
+      "spoonset3.jpg"
+    ]
+  },
+  {
+    "id": "p4mnoJKL",
+    "title": "Dove Premium Soap For Sensitive Skin",
+    "description": "desc...",
+    "price": 19.99,
+    "images": [
+      "dove-sensitive.jpg",
+      "dove-sensitive2.jpg",
+      "dove-sensitive3.jpg",
+      "dove-sensitive4.jpg"
+    ]
+  }
+]

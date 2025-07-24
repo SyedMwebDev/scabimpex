@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .dashboard-container {
+      max-width: 800px;
+      margin: 60px auto;
+      text-align: center;
+    }
+    .dashboard-container h1 {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+    }
+    .dashboard-container p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+    .nav-admin {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .nav-admin a {
+      background-color: #004aad;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .nav-admin a:hover {
+      background-color: #003080;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo-text">
+      <a href="/">Scab<span>Inpex</span></a>
+    </div>
+    <div class="nav-links">
+      <a href="/admin/messages">Messages</a>
+      <a href="/admin/products">Products</a>
+      <a href="/admin/add-product">Add Product</a>
+      <a href="/admin/carts">Client carts</a>
+       <li><a href="/admin/buy-requests">Buy Requests</a></li>
+      <a href="/admin/logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+    <h1>Welcome, Admin 👋</h1>
+    <p>Use the navigation above to manage products and view messages.</p>
+  </div>
+
+</body>
+</html>
