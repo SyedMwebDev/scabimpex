@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Cart | Scab Impex</title>
+  <title>Your Cart | Sqab Impex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css" />
   <style>
@@ -162,7 +162,7 @@
       if (cart.length === 0) return alert("🛒 Your cart is empty.");
 
       const items = cart.map(p => `- ${p.title}`).join('%0A');
-      const mailtoLink = `mailto:scabimpex@outlook.com?subject=Cart%20Order&body=Items:%0A${items}%0A%0AMessage:%0A${encodeURIComponent(message)}%0AContact:%0A${encodeURIComponent(contact)}`;
+      const mailtoLink = `mailto:sQabimpex@outlook.com?subject=Cart%20Order&body=Items:%0A${items}%0A%0AMessage:%0A${encodeURIComponent(message)}%0AContact:%0A${encodeURIComponent(contact)}`;
       window.location.href = mailtoLink;
     });
 
