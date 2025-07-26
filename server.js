@@ -88,7 +88,7 @@ app.get('/admin/login', (req, res) => res.render('admin-login', { error: null })
 
 app.post('/admin/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === 'sqabimpex.com' && password === 'e-shop2025') {
+  if (username === 'sqabimpexADMIN' && password === 'e-shop2025') {
     req.session.isLoggedIn = true;
     res.redirect('/admin');
   } else {
